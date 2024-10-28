@@ -1,5 +1,6 @@
 import pyautogui
 import time
+import keyboard
 
 def removeWatchLaterVideos(videos):
     """
@@ -35,6 +36,10 @@ def removeWatchLaterVideos(videos):
 
         # Output for each video removed
         print(f"{videos-i-1} videos left")
+
+        # Exit if 'esc' key pressed
+        if keyboard.is_pressed('esc'):
+            break
     
     print("All videos removed! :)")
 
