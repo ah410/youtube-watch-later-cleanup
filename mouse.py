@@ -1,7 +1,7 @@
 import pyautogui
 import time
 
-def removeWatchLaterVideos(numberWatchLater):
+def removeWatchLaterVideos(videos):
     """
     Remove all videos from the 'Watch Later' playlist on YouTube.
 
@@ -22,20 +22,23 @@ def removeWatchLaterVideos(numberWatchLater):
     # Give you time to move mouse in start position
     time.sleep(2)
 
-    for _ in range(numberWatchLater):
+    for i in range(videos):
         # Move to the hamburger menu for the top video in watch later
         pyautogui.moveTo(2480, 358, duration=0)
         pyautogui.click()
-
         time.sleep(1)
 
         # Move to the "Remove From Watch Later" button for the top video
         pyautogui.moveTo(2343, 502, duration=0)
         pyautogui.click()
-
         time.sleep(1)
+
+        # Output for each video removed
+        print(f"{videos-i-1} videos left")
+    
+    print("All videos removed! :)")
 
 
 if __name__ == "__main__":
-    numberWatchLater = 4617
-    removeWatchLaterVideos(numberWatchLater)
+    numberOfWatchLaterVideos = 4594
+    removeWatchLaterVideos(numberOfWatchLaterVideos)
