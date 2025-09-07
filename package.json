@@ -1,0 +1,28 @@
+{
+  "name": "remove-watch-later-videos",
+  "version": "1.0.0",
+  "description": "Instead of manually removing videos one by one in your watch later, use this script to do it for you!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node yt-remove-watch-later.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ah410/Remove-Watch-Later-Script.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ah410/Remove-Watch-Later-Script/issues"
+  },
+  "homepage": "https://github.com/ah410/Remove-Watch-Later-Script#readme",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "playwright": "^1.55.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
