@@ -48,12 +48,11 @@ const removeWatchLaterVideos = async () => {
             await page.waitForSelector('tp-yt-paper-listbox[id="items"]');
             console.log(`Menu clicked for video ${processedVideos + 1}, looking for remove option`);
 
-            // Remove the current video from Watch Later
             const removeElement = page.locator('tp-yt-paper-item', {
                 hasText: "Remove from"
             });
             await removeElement.click();
-            console.log(`Clicked remove button for video ${processedVideos + 1}`);
+            console.log(`Removed video ${processedVideos + 1}`);
 
             // Wait until the video count decreases, ensuring video is removed before moving on
             await page.waitForFunction((originalCount) => {
