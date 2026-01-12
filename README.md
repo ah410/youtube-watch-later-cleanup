@@ -20,7 +20,9 @@ I had tried to make it so the script just grabs your user directory for Chrome s
 ## Steps for Automatic Cookie Scraping
 1. Check if cookies.json already exists
 2. If not, grab the OS of the user
+    - Aim to support both Linux and Windows (Linux first, then Windows)
 3. Check the browers installed on the user's system
+    - Aim to support Firefox, Google Chrome, and Brave Browser
 4. For each browers, try grabbing the YouTube.com cookies
 5. If successful grab, transformation might be necessary to follow Playwright's expected format
     - Cookies are stored differently between different Browers (ex: .txt or .sqlite)
