@@ -16,3 +16,13 @@ npm start
 
 ## Potential Improvements
 I had tried to make it so the script just grabs your user directory for Chrome so you didn't have to do any manual work for getting your authentication setup in the Playwright browser but I just couldn't get it to work so that's why there is a little manual work at the beginnging to get your cookies setup. Eventually, the plan is to make this as seamless as possible where it automatically checks your system for installed browsers and grabs the cookies from your filesystem.
+
+## Steps for Automatic Cookie Scraping
+1. Check if cookies.json already exists
+2. If not, grab the OS of the user
+3. Check the browers installed on the user's system
+4. For each browers, try grabbing the YouTube.com cookies
+5. If successful grab, transformation might be necessary to follow Playwright's expected format
+    - Cookies are stored differently between different Browers (ex: .txt or .sqlite)
+6. Create the cookies.json file after scraping and transformation
+7. Continue with the script as normal
