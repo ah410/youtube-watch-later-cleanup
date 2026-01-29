@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node yt-remove-watch-later.ts"
+    "start": "ts-node ytCleanupWatchLaterPlaylist.ts"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,13 @@
   },
   "homepage": "https://github.com/ah410/Remove-Watch-Later-Script#readme",
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^24.3.1",
     "playwright": "^1.55.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2"
   }
 }

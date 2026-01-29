@@ -2,3 +2,4 @@ cookies.json
 package-lock.json
 node_modules/
 misc.txt
+playwright-firefox-profile/

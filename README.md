@@ -1,7 +1,7 @@
 # Remove-Watch-Later-Script
 Instead of manually removing videos one by one in your watch later, use this script to do it for you!
 
-## Before Installation
+## Before Installation (Optional for Linux Firefox Users)
 1. Export your cookies from [YouTube.com](https://www.youtube.com) to a `cookies.json` file
 - I used this [extension](https://addons.mozilla.org/en-US/firefox/addon/cookie-editor/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) from the Firefox extensions store so I didn't have to make my own exporter
 - If you find another way to grab your cookies, make sure you are getting your cookies from https://www.youtube.com and not https://accounts.youtube.com. Both of these show up under Inspect -> Storage -> Cookies so you want to grab the correct cookies.
@@ -14,17 +14,23 @@ npm install
 npm start
 ```
 
-## Potential Improvements
-I had tried to make it so the script just grabs your user directory for Chrome so you didn't have to do any manual work for getting your authentication setup in the Playwright browser but I just couldn't get it to work so that's why there is a little manual work at the beginnging to get your cookies setup. Eventually, the plan is to make this as seamless as possible where it automatically checks your system for installed browsers and grabs the cookies from your filesystem.
+## Improvements
 
-## Steps for Automatic Cookie Scraping
-1. Check if cookies.json already exists
-2. If not, grab the OS of the user
-    - Aim to support both Linux and Windows (Linux first, then Windows)
-3. Check the browers installed on the user's system
-    - Aim to support Firefox, Google Chrome, and Brave Browser
-4. For each browers, try grabbing the YouTube.com cookies
-5. If successful grab, transformation might be necessary to follow Playwright's expected format
-    - Cookies are stored differently between different Browers (ex: .txt or .sqlite)
-6. Create the cookies.json file after scraping and transformation
-7. Continue with the script as normal
+Working toward automatic cookie scraping so users no longer need to manually place `cookies.json` in the project root.
+
+### Supported
+- **Linux** - Firefox
+
+### Planned
+- **Linux** - Google Chrome, Brave  
+- **Windows** - Firefox, Google Chrome, Brave
+
+## Automatic cookie-scraping (high-level)
+1. If `cookies.json` exists, use it and skip scraping.  
+2. Locate the Firefox profile and `cookies.sqlite`.  
+3. Query `moz_cookies` for YouTube rows.  
+4. Convert rows to Playwright cookie format.  
+5. Launch the browser and add cookies to the context.  
+6. Navigate to the Watch Later page (`https://www.youtube.com/playlist?list=WL`).  
+7. Iterate playlist items and remove videos one-by-one.  
+8. Close the browser.
