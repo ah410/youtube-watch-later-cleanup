@@ -1,36 +1,32 @@
 # Remove-Watch-Later-Script
 Instead of manually removing videos one by one in your watch later, use this script to do it for you!
 
-## Before Installation (Optional for Linux Firefox Users)
-1. Export your cookies from [YouTube.com](https://www.youtube.com) to a `cookies.json` file
-- I used this [extension](https://addons.mozilla.org/en-US/firefox/addon/cookie-editor/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) from the Firefox extensions store so I didn't have to make my own exporter
-- If you find another way to grab your cookies, make sure you are getting your cookies from https://www.youtube.com and not https://accounts.youtube.com. Both of these show up under Inspect -> Storage -> Cookies so you want to grab the correct cookies.
-2. Place your `cookies.json` file in the root directory after you `git clone` this repo. Follow the installation steps below.
+## Recommended: Browser Extension (Brave / Chrome / Edge)
 
-## Installation
-```
-git clone https://github.com/ah410/remove-watch-later-script.git
-npm install
-npm start
-```
+The extension runs inside your own already-logged-in browser tab, so there's no cookie
+scraping or separate automated browser involved.
 
-## Improvements
+1. Build it: `npm install` then `npm run build:extension` (outputs to `extension/dist/`).
+2. Load it unpacked:
+   - Go to `brave://extensions` (or `chrome://extensions` / `edge://extensions`).
+   - Enable **Developer mode**.
+   - Click **Load unpacked** and select the `extension/` folder.
+3. Navigate to your [Watch Later playlist](https://www.youtube.com/playlist?list=WL).
+4. Click the extension's toolbar icon. It removes videos one at a time until the playlist is empty.
+   Progress and any errors are logged to that tab's DevTools console.
 
-Working toward automatic cookie scraping so users no longer need to manually place `cookies.json` in the project root.
+The extension only requests `activeTab` + `scripting` permissions — it doesn't read your
+cookies or run in the background on pages you haven't clicked it on.
 
-### Supported
-- **Linux** - Firefox
+### Why not automate a separate browser instead?
 
-### Planned
-- **Linux** - Google Chrome, Brave  
-- **Windows** - Firefox, Google Chrome, Brave
+An earlier version of this project scraped Firefox session cookies and drove a
+Playwright-controlled browser. That approach is kept in [`legacy/`](legacy/README.md) for
+reference, but it doesn't work: Google's login system detects the automated browser and
+blocks the sign-in flow with a 403, even with valid cookies injected. Running the removal
+logic inside your real browser session (as the extension does) sidesteps that entirely.
 
-## Automatic cookie-scraping (high-level)
-1. If `cookies.json` exists, use it and skip scraping.  
-2. Locate the Firefox profile and `cookies.sqlite`.  
-3. Query `moz_cookies` for YouTube rows.  
-4. Convert rows to Playwright cookie format.  
-5. Launch the browser and add cookies to the context.  
-6. Navigate to the Watch Later page (`https://www.youtube.com/playlist?list=WL`).  
-7. Iterate playlist items and remove videos one-by-one.  
-8. Close the browser.
+## Supported
+
+- **Browser extension**: Brave, Chrome, Edge (Chromium-based, Manifest V3)
+- **Legacy CLI**: Linux Firefox (non-functional — see above)

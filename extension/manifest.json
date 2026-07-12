@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Watch Later Cleanup",
+  "version": "1.0.0",
+  "description": "Removes every video from your YouTube Watch Later playlist with one click.",
+  "action": {
+    "default_title": "Remove all Watch Later videos"
+  },
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "permissions": ["activeTab", "scripting"]
+}

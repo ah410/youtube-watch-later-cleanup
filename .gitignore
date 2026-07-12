@@ -3,3 +3,5 @@ package-lock.json
 node_modules/
 misc.txt
 playwright-firefox-profile/
+extension/dist/
+extension/dist/
