@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280">
+  <rect width="440" height="280" fill="#FFFFFF"/>
+  <g transform="translate(40,90) scale(0.78125)">
+    <rect x="4" y="4" width="120" height="120" rx="28" fill="#0E7C86"/>
+    <rect x="20" y="32" width="52" height="10" rx="5" fill="#FFFFFF"/>
+    <rect x="20" y="50" width="52" height="10" rx="5" fill="#FFFFFF" opacity="0.8"/>
+    <rect x="20" y="68" width="36" height="10" rx="5" fill="#FFFFFF" opacity="0.6"/>
+    <g transform="rotate(35 74 60)">
+      <line x1="74" y1="18" x2="74" y2="56" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+      <path d="M65 52 L83 52 L91 78 L57 78 Z" fill="#FFFFFF"/>
+      <line x1="62" y1="78" x2="58" y2="98" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+      <line x1="70" y1="78" x2="68" y2="100" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+      <line x1="78" y1="78" x2="80" y2="100" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+      <line x1="86" y1="78" x2="90" y2="98" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <text x="170" y="145" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700" fill="#1f2430">Watch Later</text>
+  <text x="170" y="180" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700" fill="#1f2430">Cleanup</text>
+  <text x="170" y="208" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="15" fill="#6b7280">Clear your playlist in one click</text>
+</svg>

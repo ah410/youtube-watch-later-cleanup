@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2022",
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "moduleDetection": "force"
+  },
+  "include": ["background.ts", "content/**/*.ts", "popup/**/*.ts", "shared/**/*.ts"]
+}
