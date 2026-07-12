@@ -1,20 +1,31 @@
-const WATCH_LATER_URL_PATTERN = /^https:\/\/www\.youtube\.com\/playlist\?list=WL/;
+import { MSG, type StatusPayload } from './shared/constants';
 
-chrome.action.onClicked.addListener(async (tab) => {
-    if (!tab.id || !tab.url || !WATCH_LATER_URL_PATTERN.test(tab.url)) {
-        chrome.action.setBadgeText({ text: '✗', tabId: tab.id });
-        setTimeout(() => chrome.action.setBadgeText({ text: '', tabId: tab.id }), 2000);
-        console.warn('Not on the Watch Later page (https://www.youtube.com/playlist?list=WL) - skipping.');
+chrome.runtime.onMessage.addListener((message, sender) => {
+    if (message?.type !== MSG.PROGRESS) {
+        return;
+    }
+    const tabId = sender.tab?.id;
+    if (tabId == null) {
         return;
     }
 
-    chrome.action.setBadgeText({ text: '…', tabId: tab.id });
-    try {
-        await chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ['dist/content/content.js'],
-        });
-    } finally {
-        chrome.action.setBadgeText({ text: '', tabId: tab.id });
+    const { state, remaining } = message.payload as StatusPayload;
+    switch (state) {
+        case 'running':
+            chrome.action.setBadgeBackgroundColor({ color: '#1a73e8', tabId });
+            chrome.action.setBadgeText({ text: String(remaining), tabId });
+            break;
+        case 'done':
+            chrome.action.setBadgeBackgroundColor({ color: '#188038', tabId });
+            chrome.action.setBadgeText({ text: '✓', tabId });
+            setTimeout(() => chrome.action.setBadgeText({ text: '', tabId }), 3000);
+            break;
+        case 'stopped':
+            chrome.action.setBadgeText({ text: '', tabId });
+            break;
+        case 'error':
+            chrome.action.setBadgeBackgroundColor({ color: '#d93025', tabId });
+            chrome.action.setBadgeText({ text: '!', tabId });
+            break;
     }
 });

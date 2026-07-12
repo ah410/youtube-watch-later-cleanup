@@ -9,5 +9,5 @@
     "noEmit": true,
     "moduleDetection": "force"
   },
-  "include": ["background.ts", "content/**/*.ts"]
+  "include": ["background.ts", "content/**/*.ts", "popup/**/*.ts", "shared/**/*.ts"]
 }

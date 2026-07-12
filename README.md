@@ -12,8 +12,9 @@ scraping or separate automated browser involved.
    - Enable **Developer mode**.
    - Click **Load unpacked** and select the `extension/` folder.
 3. Navigate to your [Watch Later playlist](https://www.youtube.com/playlist?list=WL).
-4. Click the extension's toolbar icon. It removes videos one at a time until the playlist is empty.
-   Progress and any errors are logged to that tab's DevTools console.
+4. Click the extension's toolbar icon to open the popup, then press **Start**. It removes
+   videos one at a time until the playlist is empty, with live progress shown in the popup
+   and as a badge on the toolbar icon. Press **Stop** at any time to pause.
 
 The extension only requests `activeTab` + `scripting` permissions — it doesn't read your
 cookies or run in the background on pages you haven't clicked it on.

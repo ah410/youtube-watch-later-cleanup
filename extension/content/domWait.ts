@@ -23,6 +23,31 @@ export const waitForElement = (selector: string, timeoutMs = 30000): Promise<Ele
     });
 };
 
+// Best-effort: nudges YouTube's infinite-scroll loader and waits for more items to
+// appear, but resolves on timeout instead of rejecting since it's optional, not a hard wait.
+export const waitForMoreItems = (selector: string, currentCount: number, timeoutMs = 3000): Promise<void> => {
+    if (document.querySelectorAll(selector).length > currentCount) {
+        return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+        const observer = new MutationObserver(() => {
+            if (document.querySelectorAll(selector).length > currentCount) {
+                observer.disconnect();
+                clearTimeout(timer);
+                resolve();
+            }
+        });
+
+        const timer = setTimeout(() => {
+            observer.disconnect();
+            resolve();
+        }, timeoutMs);
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+};
+
 export const waitForCountBelow = (selector: string, length: number, timeoutMs: number): Promise<void> => {
     if (document.querySelectorAll(selector).length < length) {
         return Promise.resolve();

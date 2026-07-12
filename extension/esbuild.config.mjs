@@ -8,6 +8,7 @@ await build({
     entryPoints: [
         path.join(dir, 'background.ts'),
         path.join(dir, 'content/content.ts'),
+        path.join(dir, 'popup/popup.ts'),
     ],
     outdir: path.join(dir, 'dist'),
     bundle: true,
