@@ -60,8 +60,8 @@ const removeWatchLaterVideosFromPage = async (page: any): Promise<void> => {
 
       // Wait until the video count decreases, ensuring video is removed before moving on
       await page.waitForFunction(
-        () => {
-          return document.querySelectorAll('ytd-playlist-video-renderer').length < length;
+        (prevLen) => {
+          return document.querySelectorAll('ytd-playlist-video-renderer').length < prevLen;
         },
         length,
         { timeout: 500 },
