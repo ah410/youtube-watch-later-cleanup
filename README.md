@@ -28,6 +28,11 @@ reference, but it doesn't work: Google's login system detects the automated brow
 blocks the sign-in flow with a 403, even with valid cookies injected. Running the removal
 logic inside your real browser session (as the extension does) sidesteps that entirely.
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, commit conventions,
+CI/CD documentation, and the release process.
+
 ## Supported
 
 - **Browser extension**: Brave, Chrome, Edge (Chromium-based, Manifest V3)
@@ -54,7 +59,7 @@ store-assets/            Chrome Web Store listing images + copy — not shipped 
 
 **Why a browser extension at all**: an earlier Playwright-based approach (see
 [`legacy/README.md`](legacy/README.md)) drove a separate, automation-controlled browser,
-which Google's login system detects and blocks even with valid session cookies. A better 
+which Google's login system detects and blocks even with valid session cookies. A better
 method is to use the user's own already-authenticated browser via browser extension.
 
 **Messaging**: adding a popup means `chrome.action.onClicked` never fires (a popup takes
@@ -74,8 +79,8 @@ if the popup re-injects it (e.g. a ping race) it doesn't register a second compe
 listener. The flag naturally resets on every page load/navigation.
 
 **Removal algorithm**: the loop always removes the video at index 0, not an advancing
-index. I came across this issue where removing a video keeps going down the visible page, 
-eventually going offscreen and stopping at 50 videos removed. Index 0 ensures the next video 
+index. I came across this issue where removing a video keeps going down the visible page,
+eventually going offscreen and stopping at 50 videos removed. Index 0 ensures the next video
 to process is always at the top. YouTube also only renders a batch of the playlist into the DOM at
 a time and loads more as you scroll; since the loop never scrolls on its own, it nudges
 YouTube's infinite-scroll loader (`waitForMoreItems` in `domWait.ts`) once the rendered
