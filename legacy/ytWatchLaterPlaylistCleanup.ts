@@ -69,7 +69,7 @@ const removeWatchLaterVideosFromPage = async (page: any): Promise<void> => {
       console.log(`Finished processing video ${processedVideos + 1}`);
 
       // Edge case where this likes to pop up for some reason
-      removeYTPremiumPopup(page);
+      await removeYTPremiumPopup(page);
       processedVideos++;
     } catch (error) {
       console.error(error);
