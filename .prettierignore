@@ -1,0 +1,5 @@
+node_modules/
+extension/dist/
+playwright-firefox-profile/
+store-assets/
+package-lock.json

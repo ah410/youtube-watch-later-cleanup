@@ -1,4 +1,5 @@
 # Remove-Watch-Later-Script
+
 Instead of manually removing videos one by one in your watch later, use this script to do it for you!
 
 ## Recommended: Browser Extension (Brave / Chrome / Edge)
@@ -59,6 +60,7 @@ method is to use the user's own already-authenticated browser via browser extens
 **Messaging**: adding a popup means `chrome.action.onClicked` never fires (a popup takes
 over the toolbar click), so the three contexts — popup, background, content — talk over
 two separate channels:
+
 - `chrome.tabs.sendMessage` — targeted request/response between the popup and the content
   script: `ping` (is a listener already injected?), `getStatus` (sync the UI on open),
   `start`, `stop`.

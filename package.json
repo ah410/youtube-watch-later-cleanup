@@ -6,7 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node legacy/ytWatchLaterPlaylistCleanup.ts",
-    "build:extension": "tsc --noEmit -p extension/tsconfig.json && node extension/esbuild.config.mjs && tailwindcss -i extension/popup/popup.css -o extension/dist/popup/popup.css --minify"
+    "build:extension": "tsc --noEmit -p extension/tsconfig.json && node extension/esbuild.config.mjs && tailwindcss -i extension/popup/popup.css -o extension/dist/popup/popup.css --minify",
+    "typecheck": "tsc --noEmit -p extension/tsconfig.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -21,15 +26,21 @@
   },
   "homepage": "https://github.com/ah410/Remove-Watch-Later-Script#readme",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/cli": "^4.3.2",
     "@types/better-sqlite3": "^7.6.13",
     "@types/chrome": "^0.0.270",
     "@types/node": "^24.3.1",
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.25.12",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.7.0",
     "playwright": "^1.55.0",
+    "prettier": "^3.9.5",
     "tailwindcss": "^4.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.63.0"
   },
   "dependencies": {
     "better-sqlite3": "^12.6.2"
