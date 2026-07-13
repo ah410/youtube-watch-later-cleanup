@@ -7,7 +7,7 @@ const removeYTPremiumPopup = async (page: Page) => {
         'span.yt-core-attributed-string.yt-core-attributed-string--white-space-no-wrap',
       )
       .forEach((span) => {
-        if (span.textContent.trim() === 'Not now') {
+        if (span.textContent?.trim() === 'Not now') {
           (span as HTMLElement).click();
         }
       });
