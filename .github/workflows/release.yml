@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build extension
+        run: npm run build:extension
+
+      - name: Package extension zip
+        run: |
+          ZIP="$PWD/watch-later-cleanup-${GITHUB_REF_NAME}.zip"
+          cd extension
+          zip -r "$ZIP" manifest.json popup/popup.html icons/*.png dist/ -x '*.map'
+          echo "ZIP_PATH=$ZIP" >> "$GITHUB_ENV"
+
+      - name: Verify zip contains everything the manifest references
+        run: |
+          listing=$(unzip -l "$ZIP_PATH")
+          for f in manifest.json popup/popup.html \
+                   dist/background.js dist/content/content.js \
+                   dist/popup/popup.js dist/popup/popup.css \
+                   icons/icon16.png icons/icon32.png icons/icon48.png icons/icon128.png; do
+            echo "$listing" | grep -q " $f\$" || { echo "::error::$f missing from zip"; exit 1; }
+          done
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: watch-later-cleanup-*.zip
+          generate_release_notes: true
