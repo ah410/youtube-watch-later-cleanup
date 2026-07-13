@@ -41,7 +41,7 @@ const removeWatchLaterVideosFromPage = async (page: any): Promise<void> => {
 
     const currentVideo = currentVideos[processedVideos];
     if (!currentVideo) {
-      console.log(`Video ${processedVideos + 1} is undefined, skipping`);
+      processedVideos = 0;
       continue;
     }
     console.log(`Processing video ${processedVideos + 1} of ${currentVideos.length}`);
