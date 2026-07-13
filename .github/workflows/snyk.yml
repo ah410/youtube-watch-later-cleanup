@@ -1,0 +1,28 @@
+# Dependency vulnerability scanning via Snyk.
+# Requires a SNYK_TOKEN repo secret: create a free account at https://snyk.io,
+# copy the API token from Account Settings, and add it under
+# Settings -> Secrets and variables -> Actions.
+name: Snyk
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '30 5 * * 1' # weekly, Monday 05:30 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Snyk Open Source (dependency scan)
+        uses: snyk/actions/node@9adf32b1121593767fc3c057af55b55db032dc04 # v1.0.0
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
