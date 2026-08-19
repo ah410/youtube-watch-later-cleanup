@@ -45,6 +45,9 @@ when the user clicks the toolbar icon and presses Start.
 - `scripting`: needed to inject the removal script into the active tab on demand.
 - No `host_permissions`, no remote code, no background collection of any kind.
 
+## Privacy policy URL (Developer Dashboard field)
+https://github.com/ah410/youtube-watch-later-cleanup/blob/main/PRIVACY.md
+
 ## Assets to upload
 - Store icon: `extension/icons/icon128.png`
 - Small promo tile (required): `store-assets/promo-tile-440x280.png`
@@ -68,7 +71,8 @@ account and payment, which nothing here can do on your behalf.
 4. Paste in the title/summary/description from this file; upload the screenshots and
    promo tile (+ marquee if you want one).
 5. Fill in the single-purpose statement and permission justifications above; complete
-   the data-usage disclosure (declare no data collected or sold).
+   the data-usage disclosure (declare no data collected or sold) and paste in the
+   privacy policy URL above.
 6. Submit for review (typically hours to a few days).
 7. Once approved, no separate Brave submission is needed — Brave installs extensions
    directly from the Chrome Web Store, so this one listing covers Brave, Chrome, and Edge.
